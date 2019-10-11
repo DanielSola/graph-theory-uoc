@@ -18,7 +18,8 @@ const _calcNextSequence = sequence => {
     });
 }
 
-const havelHakimi = (sequence) => {
+const havelHakimi = originalSequence => {
+    const sequence = [ ... originalSequence ];
     const isFinalGraphicSequence = sequence.every(number => number === 0);
 
     if(isFinalGraphicSequence) {
@@ -37,5 +38,5 @@ const havelHakimi = (sequence) => {
     return false;
 };
 
-const isGraphic = havelHakimi([2,2,2,2,2,2,3,1]);
-console.log('Is graphical? ', isGraphic);
+const sequence = [2,2,2,2,2,2,3,1];
+const isGraphic = havelHakimi(sequence);
