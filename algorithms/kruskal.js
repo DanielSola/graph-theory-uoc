@@ -46,4 +46,4 @@ const graph = [
 
 const generatorGraph = kruskal(graph);
 
-console.log('Generator graph', generatorGraph);
+console.log('Generator graph: ', generatorGraph);
