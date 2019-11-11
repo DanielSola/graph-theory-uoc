@@ -11,9 +11,9 @@ const kruskal = graph => {
 
   const uniqueVertices = new Set(vertices);
   const uf = new UnionFind(uniqueVertices);
-
+  const sorted = graph.sort((a,b) => a.cost - b.cost);
+  
   while (generatorEdges.length < uniqueVertices.size - 1) {
-    const sorted = graph.sort((a,b) => a.cost - b.cost);
     const minCostEdge = sorted.shift();
     const { a: nodeA, b: nodeB } = minCostEdge;
     const parentA = uf.find(nodeA);
@@ -29,21 +29,24 @@ const kruskal = graph => {
   return generatorEdges;
 };
 
-const graph = [
-  { a: 1, b: 4, cost: 1 },
-  { a: 2, b: 5, cost: 10 },
-  { a: 1, b: 2, cost: 2 },
-  { a: 6, b: 7, cost: 1 },
-  { a: 5, b: 7, cost: 6 },
-  { a: 4, b: 5, cost: 2 },
-  { a: 1, b: 3, cost: 4 },
-  { a: 4, b: 7, cost: 4 },
-  { a: 3, b: 4, cost: 2 },
-  { a: 3, b: 6, cost: 5 },
-  { a: 4, b: 6, cost: 8 },
-  { a: 2, b: 4, cost: 3 },
+const graphCross = [
+  { a: 'A', b: 'B', cost: 7 },
+  { a: 'A', b: 'C', cost: 9 },
+  { a: 'A', b: 'D', cost: 12 },
+  { a: 'A', b: 'E', cost: 13 },
+  { a: 'A', b: 'F', cost: 11 },
+  { a: 'B', b: 'C', cost: 16 },
+  { a: 'B', b: 'D', cost: 16 },
+  { a: 'B', b: 'E', cost: 15 },
+  { a: 'B', b: 'F', cost: 13 },
+  { a: 'C', b: 'D', cost: 14 },
+  { a: 'C', b: 'E', cost: 14 },
+  { a: 'C', b: 'F', cost: 16 },
+  { a: 'D', b: 'E', cost: 25 },
+  { a: 'D', b: 'F', cost: 5 },
+  { a: 'E', b: 'F', cost: 24 },
 ];
 
-const generatorGraph = kruskal(graph);
+const generatorGraph = kruskal(graphCross);
 
 console.log('Generator graph: ', generatorGraph);
